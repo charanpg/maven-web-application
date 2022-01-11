@@ -1,0 +1,72 @@
+ipeline {
+agent {
+label 'master'
+}
+
+tools {
+maven 'maven3.8.4'
+}
+
+triggers {
+  pollSCM '* * * * *'
+}
+
+options {
+  timestamps ()
+  buildDiscarder logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '5', daysToKeepStr: '', numToKeepStr: '5')
+}
+
+stages {
+stage('checkoutcode'){
+steps {
+git branch: 'development', credentialsId: 'a968376d-026f-4156-b665-0c0fa2b3c542', url: 'https://github.com/charanpg/maven-web-application.git'
+}
+}
+stage('build') {
+steps {
+sh "mvn clean package"
+}
+}
+
+stage('sqreport') {
+steps {
+sh "mvn clean sonar:sonar"
+}
+}
+
+stage('uploadartifact') {
+steps {
+sh "mvn clean deploy"
+}
+}
+
+stage('deploy') {
+steps {
+sshagent(['c0b9e938-ef0a-4b89-b97d-73c942575bbd']) {
+sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@18.118.8.1:/opt/apache-tomcat-9.0.56/webapps/"
+}
+}
+}
+
+}//end of stages
+
+post {
+  always {
+    emailext body: '''build done
+regards
+charanpg''', subject: 'build done', to: 'saicharan1222@gmail.com'
+}
+  success {
+    emailext body: '''build done..success
+regards
+charanpg''', subject: 'build done', to: 'saicharan1222@gmail.com'
+  }
+  failure {
+    emailext body: '''build done..failure
+regards
+charanpg''', subject: 'build done', to: 'saicharan1222@gmail.com'
+  }
+}
+
+
+}//end of pipeline
