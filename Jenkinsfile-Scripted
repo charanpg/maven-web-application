@@ -21,7 +21,7 @@ stage('uploadartifact')
 stage('deploy')
 {
     sshagent(['c0b9e938-ef0a-4b89-b97d-73c942575bbd']) {
-    sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@3.141.17.54:/opt/apache-tomcat-9.0.56/webapps/"
+    sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@3.15.230.245:/opt/apache-tomcat-9.0.56/webapps/"
 }
 }
 stage('emailnotification')
