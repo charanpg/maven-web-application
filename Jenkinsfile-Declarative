@@ -7,9 +7,9 @@ tools {
 maven 'maven3.8.4'
 }
 
-triggers {
- // pollSCM '* * * * *'
-}
+/*triggers {
+  pollSCM '* * * * *'
+} */
 
 options {
   timestamps ()
