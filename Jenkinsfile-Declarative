@@ -43,7 +43,7 @@ sh "mvn clean deploy"
 stage('deploy') {
 steps {
 sshagent(['c0b9e938-ef0a-4b89-b97d-73c942575bbd']) {
-sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@3.15.230.245:/opt/apache-tomcat-9.0.56/webapps/"
+sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@18.217.65.140:/opt/apache-tomcat-9.0.56/webapps/"
 }
 }
 }
