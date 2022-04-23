@@ -99,13 +99,13 @@
 	    <repository>
 	      <id>nexus</id>
 	      <name>Mithun Technologies Releases Nexus Repository</name>
-	      <url>http://3.142.90.161:8106/charanpg/repository/sct-release//</url>
+	      <url>http://18.117.242.127:8081/repository/sct-release//</url>
 	    </repository>
 	    
 	    <snapshotRepository>
 	      <id>nexus</id>
 	      <name>Mithun Technologies Snapshot Nexus Repository </name>
-	      <url>http://3.142.90.161:8106/charanpg/repository/sct-snapshot//</url>
+	      <url>http://18.117.242.127:8081/repository/sct-snap//</url>
 	    </snapshotRepository>
 	    
 	</distributionManagement>
