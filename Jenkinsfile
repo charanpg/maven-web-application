@@ -23,6 +23,7 @@ node
     sh "scp -o stricthostkeychecking=no target/maven-web-application.war ubuntu@13.58.145.101:/opt/tomcat/webapps/"
 }
     }
+    /*
     stage ('Sendemailnotification')
     {
         emailext body: '''Notify Status.
@@ -30,5 +31,5 @@ node
 Regards,
 Charan
 1039612.''', replyTo: 'saicharan1222@gmail.com', subject: 'Email Notification.', to: 'saicharan1222@gmail.com'
-    }
+    } */
 }
